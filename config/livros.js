@@ -10,7 +10,7 @@ const pool = new Pool({
 
 //Pegar todos livros --TIRAR O LIMIT (insomnia não suporta mais que 100mb de json.)
 const getLivros = (request, response) => {
-    pool.query('SELECT * FROM livros ORDER BY author ASC limit 100', (error, results) => {
+    pool.query('SELECT * FROM livros ORDER BY author ASC limit 2000', (error, results) => {
       if (error) {
         throw error
       }
