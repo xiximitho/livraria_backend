@@ -1,5 +1,10 @@
-module.exports = app => {
-    const controller = require('../controllers/livrosVenda')();
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/livrosVenda');
 
-    app.route('/api/v1/livros-venda').get(controller.listarLivrosVenda);
-}
+router.get('/get', controller.get);
+router.post('/post', controller.post);
+router.put('/:id', controller.put);
+router.delete('/:id', controller.delete);module.exports = router;
+
+module.exports = router;

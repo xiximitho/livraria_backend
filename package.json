@@ -4,7 +4,7 @@
   "description": "Backend do projeto de web",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon index.js"
   },
   "author": "Felipe",
   "license": "MIT",
