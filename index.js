@@ -1,6 +1,11 @@
-const app = require ('./app')
-const port = '3000';
+const express = require('express');
+const app = express();
 
-app.listen(port, () => {
-    console.log(`server rodando na porta ${port}`)
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+
+app.use('/', require('./server/route/livrosRota'));
+
+app.listen(3000, () => { 
+  console.log('Express is listening on port 3000!');
+})

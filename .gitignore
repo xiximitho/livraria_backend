@@ -13,3 +13,5 @@ node_modules/
 .yarn/build-state.yml
 .yarn/install-state.gz
 yarn.lock
+
+package-lock.json
