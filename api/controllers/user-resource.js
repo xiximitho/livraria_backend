@@ -61,3 +61,24 @@ exports.createUser = (req, res, next) => {
       res.status(500).send({ error: err });
     });
 };
+
+exports.checkPassword = (req, res, next) => {
+  model.Usuario.findOne({
+    where: {
+      login: req.body.login,
+    },
+  })
+    .then((usuario) => {
+      if (!usuario || !bcrypt.compareSync(req.body.senha, usuario.senha))
+        return res.status(403).send({ error: "Login inválido!" });
+      const id = usuario.id;
+      var token = jwt.sign({ id }, process.env.SECRET, {
+        expiresIn: 864000,
+      });
+
+      return res.status(200).send({ auth: true, token: token });
+    })
+    .catch((err) => {
+      return res.status(500).send({ error: err });
+    });
+};

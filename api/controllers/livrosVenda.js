@@ -13,19 +13,15 @@ exports.post = (req, res, next) => {
 };
 
 exports.get = (req, res, next) => {
-  pool.query(
-    "SELECT * FROM livros ORDER BY author ASC limit 2000",
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      res.status(200).json(results.rows);
+  pool.query("SELECT * FROM livros ASC limit 2000", (error, results) => {
+    if (error) {
+      throw error;
     }
-  );
+    res.status(200).json(results.rows);
+  });
 };
 
 exports.getByIsbn = (req, res, next) => {
-
   const { isbn } = req.params;
   pool.query(
     "SELECT * FROM livros where isbn like '" + isbn + "%'",
@@ -37,7 +33,6 @@ exports.getByIsbn = (req, res, next) => {
     }
   );
 };
-
 
 exports.getByAuthor = (req, res, next) => {
   const { author } = req.params;

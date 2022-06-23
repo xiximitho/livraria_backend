@@ -3,5 +3,6 @@ const router = express.Router();
 const controller = require("../controllers/user-resource");
 
 router.post("/post", controller.createUser);
+router.get("/auth", controller.checkPassword);
 
 module.exports = router;
