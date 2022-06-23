@@ -22,7 +22,7 @@ exports.createComentarios = (req, res, next) => {
 exports.getById_Livro = (req, res, next) => {
   model.Comentarios.findAll({
     where: {
-      id_usuario: req.body.id_usuario,
+      id_livro: req.body.id_livro,
     },
   })
     .then((comentarios) => {
