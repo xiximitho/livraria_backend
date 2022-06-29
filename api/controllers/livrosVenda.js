@@ -13,7 +13,7 @@ exports.post = (req, res, next) => {
 };
 
 exports.get = (req, res, next) => {
-  pool.query("SELECT * FROM livros limit 2000", (error, results) => {
+  pool.query("SELECT * FROM livros limit 20", (error, results) => {
     if (error) {
       throw error;
     }
