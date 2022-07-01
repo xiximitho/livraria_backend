@@ -15,7 +15,7 @@ exports.post = (req, res, next) => {
 exports.get = (req, res, next) => {
   pool.query(
     "SELECT * FROM livros where not img is null and img <> '' and not isbn is null and isbn <> '' and not title is null and title <> '' \
-    and not link is null and link <> '' and not rating is null and rating > 0 order by isbn limit 20",
+    and not link is null and link <> '' and not rating is null and rating > 0 order by isbn limit 100",
     (error, results) => {
       if (error) {
         throw error;
