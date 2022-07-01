@@ -47,7 +47,7 @@ router.post("/core/api/v1/rest/users", function (req, resp) {
 
 exports.createUser = (req, res, next) => {
   let hash = bcrypt.hashSync(req.body.senha, 10);
-
+  console.log(req.body);
   model.Usuario.create({
     nome: req.body.nome,
     login: req.body.login,
@@ -70,7 +70,7 @@ exports.checkPassword = (req, res, next) => {
   })
     .then((usuario) => {
       if (!usuario || !bcrypt.compareSync(req.body.senha, usuario.senha))
-        return res.status(403).send({ error: "Login inválido!" });
+        return res.status(401).send({ error: "Login inválido!" });
       const id = usuario.id;
       var token = jwt.sign({ id }, process.env.SECRET, {
         expiresIn: 864000,
