@@ -13,12 +13,16 @@ exports.post = (req, res, next) => {
 };
 
 exports.get = (req, res, next) => {
-  pool.query("SELECT * FROM livros limit 20", (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM livros where not img is null and img <> '' and not isbn is null and isbn <> '' and not title is null and title <> '' \
+    and not link is null and link <> '' and not rating is null and rating > 0 order by isbn limit 20",
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results.rows);
     }
-    res.status(200).json(results.rows);
-  });
+  );
 };
 
 exports.getByIsbn = (req, res, next) => {
