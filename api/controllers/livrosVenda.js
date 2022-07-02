@@ -40,8 +40,9 @@ exports.getByIsbn = (req, res, next) => {
 
 exports.getByAuthor = (req, res, next) => {
   const { author } = req.params;
+  console.log(author)
   pool.query(
-    "SELECT * FROM livros where author like '" + author + "%'",
+    "SELECT * FROM livros where author like '%" + author + "%'",
     (error, results) => {
       if (error) {
         throw error;
