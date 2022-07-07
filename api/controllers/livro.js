@@ -38,7 +38,7 @@ exports.getByGenre = (req, res) => {
     const genero = req.params.genre;
     console.log(genero)
     pool.query(
-      "SELECT * FROM livros where genre like '%"+genero+"%' and genre is not null and img is not null and title is not null limit 100",
+      "SELECT * FROM livros where genre like '%"+genero+"%' and genre is not null and img is not null and title is not null order by title desc limit 100",
       (error, results) => {
         if (error) {
           throw error;
@@ -52,7 +52,7 @@ exports.getByGenre = (req, res) => {
     const rate = req.params.rate;
     console.log(rate)
     pool.query(
-      "SELECT * FROM livros where rating > "+rate+ " and genre is not null and img is not null and title is not null limit 100",
+      "SELECT * FROM livros where rating > "+rate+ " and genre is not null and img is not null and title is not null order by title desc limit 30",
       (error, results) => {
         if (error) {
           throw error;
