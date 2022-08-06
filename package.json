@@ -1,5 +1,12 @@
 {
   "dependencies": {
     "sequelize": "^6.21.3"
-  }
+  },
+  "name": "Livraria-Backend",
+  "version": "1.0.0",
+  "description": "Backend do projeto de uma livraria para matéria de Web/Topicos Integradores/Mobile",
+  "main": "index.js",
+  "repository": "git@github.com:xiximitho/livraria_backend.git",
+  "author": "Felipe Mattes <mattesfelipe@gmail.com>",
+  "license": "MIT"
 }
