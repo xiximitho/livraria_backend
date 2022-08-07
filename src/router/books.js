@@ -13,6 +13,24 @@ router.get('/', async (req, res) => {
   }
 })
 
+/* router.get('/:id', async (req, res) => {
+  try {
+    const result = await bookController.showId(req.params.id)
+    res.status(200).send(result)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}) */
+
+router.get('/:author', async (req, res) => {
+  try {
+    const result = await bookController.getByAuthor(req.params.author)
+    res.status(200).send(result)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+})
+
 router.post('/', async (req, res) => {
   try {
     const result = await bookController.store(req.body)

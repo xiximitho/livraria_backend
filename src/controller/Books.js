@@ -1,4 +1,5 @@
 const model = require('../models')
+const { Op } = require('sequelize')
 class Books {
   async store (DAO) {
     try {
@@ -27,6 +28,47 @@ class Books {
     try {
       const books = await model.sequelize.models.Books.findAll()
       return books
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  async showId (id) {
+    try {
+      const books = await model.sequelize.models.Books.findOne({
+        where: {
+          id
+        }
+      })
+      return books
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  async getByTitle (title) {
+    try {
+      const books = await model.sequelize.models.Books.findOne({
+        where: {
+          title
+        }
+      })
+      return books
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  async getByAuthor (author) {
+    try {
+      const books = await model.sequelize.models.Books.findAll({
+        where: {
+          author: {
+            [Op.like]: `%${author}%`
+          }
+        }
+      })
+      return await books
     } catch (error) {
       throw new Error(error)
     }
