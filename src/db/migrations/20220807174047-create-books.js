@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       isbn13: {
-        type: Sequelize.BIGINT
+        type: Sequelize.STRING
       },
       link: {
         type: Sequelize.STRING

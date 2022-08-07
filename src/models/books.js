@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       genre: DataTypes.STRING,
       img: DataTypes.STRING,
       isbn: DataTypes.STRING,
-      isbn13: DataTypes.BIGINT,
+      isbn13: DataTypes.STRING,
       link: DataTypes.STRING,
       pages: DataTypes.BIGINT,
       rating: DataTypes.BIGINT,
