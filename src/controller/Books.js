@@ -1,9 +1,9 @@
 const model = require('../models')
 const { Op } = require('sequelize')
-class Books {
+class Livros {
   async store (DAO) {
     try {
-      const books = await model.sequelize.models.Books.create({
+      const books = await model.sequelize.models.Livros.create({
         author: DAO.author,
         bookformat: DAO.bookformat,
         desc: DAO.desc,
@@ -26,7 +26,7 @@ class Books {
 
   async show () {
     try {
-      const books = await model.sequelize.models.Books.findAll()
+      const books = await model.sequelize.models.Livros.findAll()
       return books
     } catch (error) {
       throw new Error(error)
@@ -35,7 +35,7 @@ class Books {
 
   async showId (id) {
     try {
-      const books = await model.sequelize.models.Books.findOne({
+      const books = await model.sequelize.models.Livros.findOne({
         where: {
           id
         }
@@ -48,7 +48,7 @@ class Books {
 
   async getByTitle (title) {
     try {
-      const books = await model.sequelize.models.Books.findOne({
+      const books = await model.sequelize.models.Livros.findOne({
         where: {
           title
         }
@@ -61,7 +61,7 @@ class Books {
 
   async getByAuthor (author) {
     try {
-      const books = await model.sequelize.models.Books.findAll({
+      const books = await model.sequelize.models.Livros.findAll({
         where: {
           author: {
             [Op.like]: `%${author}%`
@@ -75,4 +75,4 @@ class Books {
   }
 }
 
-module.exports = Books
+module.exports = Livros

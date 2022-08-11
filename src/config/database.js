@@ -6,10 +6,10 @@ const sequelize = new Sequelize(
   config.username,
   config.password,
   {
-    dialect: 'mysql',
-    port: config.port
-  },
-  config.define
+    dialect: 'postgres',
+    port: config.port,
+    define: { timestamps: false, updatedAt: false, createdAt: false }
+  }
 )
 
 module.exports = sequelize
