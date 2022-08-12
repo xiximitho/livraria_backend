@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const BookController = require('../controller/Books')
+const BookController = require('../controller/Livros')
 const bookController = new BookController()
 
 const router = Router()
@@ -14,18 +14,27 @@ router.get('/', async (req, res) => {
   }
 })
 
-/* router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const result = await bookController.showId(req.params.id)
     res.status(200).send(result)
   } catch (error) {
     res.status(400).send(error)
   }
-}) */
+})
 
-router.get('/:author', async (req, res) => {
+router.get('/author/:author', async (req, res) => {
   try {
     const result = await bookController.getByAuthor(req.params.author)
+    res.status(200).send(result)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+})
+
+router.get('/title/:title', async (req, res) => {
+  try {
+    const result = await bookController.getByTitle(req.params.title)
     res.status(200).send(result)
   } catch (error) {
     res.status(400).send(error)

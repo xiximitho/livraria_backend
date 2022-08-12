@@ -50,7 +50,9 @@ class Livros {
     try {
       const books = await model.sequelize.models.Livros.findOne({
         where: {
-          title
+          title: {
+            [Op.like]: `%${title}%`
+          }
         }
       })
       return books
