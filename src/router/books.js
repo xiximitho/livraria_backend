@@ -23,6 +23,14 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+router.get('/rate/:rate', async (req, res) => {
+  try {
+    const result = await bookController.getByRate(req.params.rate)
+    res.status(200).send(result)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+})
 router.get('/author/:author', async (req, res) => {
   try {
     const result = await bookController.getByAuthor(req.params.author)

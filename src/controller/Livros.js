@@ -75,6 +75,37 @@ class Livros {
       throw new Error(error)
     }
   }
+
+  async getByGenre (genre) {
+    try {
+      const books = await model.sequelize.models.Livros.findAll({
+        where: {
+          genre: {
+            [Op.like]: `%${genre}%`
+          }
+        }
+      })
+      return await books
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  async getByRate (rate) {
+    try {
+      const books = await model.sequelize.models.Livros.findAll({
+        limit: 30,
+        where: {
+          rating: {
+            [Op.gte]: [Number(rate)]
+          }
+        }
+      })
+      return await books
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
 }
 
 module.exports = Livros
