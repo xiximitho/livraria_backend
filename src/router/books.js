@@ -49,6 +49,15 @@ router.get('/title/:title', async (req, res) => {
   }
 })
 
+router.get('/genre/:genre', async (req, res) => {
+  try {
+    const result = await bookController.getByGenre(req.params.genre)
+    res.status(200).send(result)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+})
+
 router.post('/', async (req, res) => {
   try {
     const result = await bookController.store(req.body)
