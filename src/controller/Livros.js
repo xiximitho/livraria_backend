@@ -1,7 +1,7 @@
-const model = require('../models')
-const { Op } = require('sequelize')
+const model = require("../models");
+const { Op } = require("sequelize");
 class Livros {
-  async store (DAO) {
+  async store(DAO) {
     try {
       const books = await model.sequelize.models.Livros.create({
         author: DAO.author,
@@ -16,96 +16,108 @@ class Livros {
         rating: DAO.rating,
         reviews: DAO.reviews,
         title: DAO.title,
-        totalratings: DAO.totalratings
-      })
-      return books
+        totalratings: DAO.totalratings,
+      });
+      return books;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
-  async show () {
+  async show() {
     try {
-      const books = await model.sequelize.models.Livros.findAll()
-      return books
+      const books = await model.sequelize.models.Livros.findAll({
+        limit: 1000,
+        order: [["isbn", "ASC"]],
+      });
+      return books;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
-  async showId (id) {
+  async showId(isbn) {
     try {
       const books = await model.sequelize.models.Livros.findOne({
         where: {
-          id
-        }
-      })
-      return books
+          isbn,
+        },
+      });
+      return books;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
-  async getByTitle (title) {
+  async getByTitle(title) {
     try {
       const books = await model.sequelize.models.Livros.findOne({
         where: {
           title: {
-            [Op.like]: `%${title}%`
-          }
-        }
-      })
-      return books
+            [Op.like]: `%${title}%`,
+          },
+        },
+        order: [["isbn", "ASC"]],
+        limit: 1000,
+      });
+      return books;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
-  async getByAuthor (author) {
+  async getByAuthor(author) {
     try {
       const books = await model.sequelize.models.Livros.findAll({
+        order: [["isbn", "ASC"]],
+        limit: 1000,
         where: {
+          
           author: {
-            [Op.like]: `%${author}%`
-          }
-        }
-      })
-      return await books
+            [Op.like]: `%${author}%`,
+          },
+        },
+      });
+      return await books;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
-  async getByGenre (genre) {
+  async getByGenre(genre) {
     try {
       const books = await model.sequelize.models.Livros.findAll({
+        limit: 1000,
+        order: [["isbn", "ASC"]],
         where: {
           genre: {
-            [Op.like]: `%${genre}%`
-          }
-        }
-      })
-      return await books
+            [Op.like]: `%${genre}%`,
+          },
+        },
+        
+      });
+      return await books;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
-  async getByRate (rate) {
+  async getByRate(rate) {
     try {
       const books = await model.sequelize.models.Livros.findAll({
-        limit: 30,
+        limit: 1000,
+        order: [["isbn", "ASC"]],
         where: {
           rating: {
-            [Op.gte]: [Number(rate)]
-          }
-        }
-      })
-      return await books
+            [Op.gte]: [Number(rate)],
+          },
+        },
+      });
+      return await books;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 }
 
-module.exports = Livros
+module.exports = Livros;
