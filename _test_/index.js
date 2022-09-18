@@ -9,4 +9,12 @@ function getByRate (valor) {
   return bookController.getByRate(valor)
 }
 
-module.exports = { getByAuthor, getByRate }
+function getByTitle (title) {
+  return bookController.getByTitle(title)
+}
+
+function getByGenre (genre) {
+  return bookController.getByGenre(genre)
+}
+
+module.exports = { getByAuthor, getByRate, getByTitle, getByGenre }
